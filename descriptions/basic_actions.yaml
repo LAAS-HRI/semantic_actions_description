@@ -17,5 +17,7 @@ strafe_in_front:
   type: strafe
   description: "Strafing to place the agent in front of an object."
   parameters:
-    - object: Object  # the object in front of which the agent must strafe. Also put an "along" object? (e.g. table)
+    object: Object  # the object in front of which the agent must strafe. Also put an "along" object? (e.g. table)
+    container: Container
+
   

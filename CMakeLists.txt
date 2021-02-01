@@ -15,6 +15,29 @@ catkin_package(
   CATKIN_DEPENDS roscpp std_msgs roslib
 )
 
+###########
+## Build ##
+###########
+
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
+)
+
+add_library(action_description_lib
+  src/reader/ActionReader.cpp
+)
+add_dependencies(action_description_lib ${catkin_EXPORTED_TARGETS})
+target_link_libraries(action_description_lib yaml-cpp ${catkin_LIBRARIES})
+
+add_executable(action_description_test src/reader/test.cpp)
+add_dependencies(action_description_test ${catkin_EXPORTED_TARGETS})
+target_link_libraries(action_description_test action_description_lib)
+
+add_executable(analyse src/analyse.cpp)
+add_dependencies(analyse ${catkin_EXPORTED_TARGETS})
+target_link_libraries(analyse action_description_lib)
+
 ##############################################################################
 # Qt Environment
 ##############################################################################
