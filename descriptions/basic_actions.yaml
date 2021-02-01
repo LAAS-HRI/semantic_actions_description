@@ -1,0 +1,21 @@
+action:  # Maybe not needed?
+  agent: Agent
+
+motion:
+  type: action
+  description: "An action making the agent move a part of or all their body."
+
+navigate:
+  type: motion
+  description: "An action making the agent move all their body from one place to another."
+
+strafe:
+  type: navigate
+  description: "Navigating short distances, mostly lateraly. Often to place in front of a object to pick."
+
+strafe_in_front:
+  type: strafe
+  description: "Strafing to place the agent in front of an object."
+  parameters:
+    - object: Object  # the object in front of which the agent must strafe. Also put an "along" object? (e.g. table)
+  
