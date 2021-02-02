@@ -57,6 +57,7 @@ bool ActionReader::load(bool log)
                                 actions_[descr_it->second.as<std::string>()] = new action_t(descr_it->second.as<std::string>());
 
                             action->type = actions_[descr_it->second.as<std::string>()];
+                            actions_[descr_it->second.as<std::string>()]->children.push_back(action);
                         }
                         else
                             errors.emplace_back(action->name + " : " + descr_it->first.as<std::string>() + " is not in form of scalar");
@@ -116,14 +117,18 @@ bool ActionReader::load(bool log)
                   displayError(error);
         }
 
+        for(auto action : actions_)
+        {
+            if(action.second->type == nullptr)
+              actions_roots_.push_back(action.second);
+        }
+
         if(log)
         {
             for(auto action : actions_)
             {
                 if(action.second->defined == false)
                   displayError(action.first + " is use but not defined");
-                else if(action.second->type == nullptr)
-                  actions_roots_.push_back(action.second);
             }
             std::cout << COLOR_GREEN << "[100%] Actions analysed" << COLOR_OFF << std::endl;
         }

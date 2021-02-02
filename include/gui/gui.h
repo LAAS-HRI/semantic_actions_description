@@ -4,12 +4,15 @@
 #include <QMainWindow>
 #include <QTextCursor>
 #include <QButtonGroup>
+#include <QTreeWidgetItem>
 
 #include <ros/ros.h>
 #include <vector>
 #include <string>
 
 #include "std_msgs/String.h"
+
+#include "reader/ActionReader.h"
 
 namespace Ui {
 class GUI;
@@ -30,6 +33,14 @@ private:
   ros::NodeHandle* n_;
 
   QButtonGroup switch_group_;
+
+  std::map<std::string, action_t*> items_;
+  std::vector<action_t*> items_roots_;
+
+  void load();
+  void addItemsToList();
+  void addItemsToTree();
+  void addItemsToTree(action_t* item, QTreeWidgetItem* parent);
 
 public slots:
 

@@ -87,5 +87,6 @@ target_link_libraries(actions_description_gui
     Qt5::Core
     Qt5::Widgets
     Qt5::PrintSupport
+    action_description_lib
 )
 install(TARGETS actions_description_gui RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

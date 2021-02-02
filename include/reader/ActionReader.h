@@ -17,6 +17,7 @@ struct action_t
 
     std::string name;
     action_t* type;
+    std::vector<action_t*> children;
     std::string description;
     std::vector<std::string> verbalizations;
     std::map<std::string, std::string> parameters;

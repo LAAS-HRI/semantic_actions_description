@@ -18,6 +18,12 @@ strafe_in_front:
   description: "Strafing to place the agent in front of an object."
   parameters:
     object: Object  # the object in front of which the agent must strafe. Also put an "along" object? (e.g. table)
-    container: Container
 
-  
+strafe_next_to:
+  type: strafe
+  description: "Strafing to place the agent next to an object."
+  parameters:
+    object: Object  # the object in front of which the agent must strafe. Also put an "along" object? (e.g. table)
+
+pick:
+  type: motion
