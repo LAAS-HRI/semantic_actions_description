@@ -47,7 +47,7 @@ class ActionReader
 {
 public:
     ActionReader(ros::NodeHandle* nh, const std::string& ros_param)
-    { 
+    {
         nh_ = nh;
         ros_param_ = ros_param;
     }
@@ -64,16 +64,22 @@ public:
         for(auto action : actions_)
             delete action.second;
         actions_.clear();
+        actions_roots_.clear();
+        nb_errors_ = 0;
     }
 
-    std::map<std::string, action_t*> getActions()
-    {
-        return actions_;
-    }
+    std::map<std::string, action_t*> getActions() { return actions_; }
+    std::vector<action_t*> getRootActions() { return actions_roots_; }
+    size_t getNbError() { return nb_errors_; }
+
 private:
     ros::NodeHandle* nh_;
     std::string ros_param_;
     std::map<std::string, action_t*> actions_;
+    std::vector<action_t*> actions_roots_;
+    size_t nb_errors_;
+
+    void displayError(const std::string& error);
 };
 
 #endif // ACTIONREADER_H

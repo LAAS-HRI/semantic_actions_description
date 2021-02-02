@@ -55,7 +55,7 @@ bool ActionReader::load(bool log)
                         {
                             if(actions_.find(descr_it->second.as<std::string>()) == actions_.end())
                                 actions_[descr_it->second.as<std::string>()] = new action_t(descr_it->second.as<std::string>());
-                            
+
                             action->type = actions_[descr_it->second.as<std::string>()];
                         }
                         else
@@ -104,16 +104,16 @@ bool ActionReader::load(bool log)
                             errors.emplace_back(action->name + " : " + descr_it->first.as<std::string>() + " is not in form of map");
                     }
                     else
-                      errors.emplace_back(action->name + " : " + descr_it->first.as<std::string>() + " is not a valid keyword");  
+                      errors.emplace_back(action->name + " : " + descr_it->first.as<std::string>() + " is not a valid keyword");
                 }
             }
 
             actions_[action->name] = action;
             analyse_progress += analyse_step;
-            
+
             if(log)
                 for(auto error : errors)
-                    std::cout << COLOR_RED << "[ERROR] " << error << COLOR_OFF << std::endl;
+                  displayError(error);
         }
 
         if(log)
@@ -121,7 +121,9 @@ bool ActionReader::load(bool log)
             for(auto action : actions_)
             {
                 if(action.second->defined == false)
-                    std::cout << COLOR_RED << "[ERROR] " << action.first << " is use but not defined" << std::endl;
+                  displayError(action.first + " is use but not defined");
+                else if(action.second->type == nullptr)
+                  actions_roots_.push_back(action.second);
             }
             std::cout << COLOR_GREEN << "[100%] Actions analysed" << COLOR_OFF << std::endl;
         }
@@ -130,4 +132,10 @@ bool ActionReader::load(bool log)
     }
     else
         return false;
+}
+
+void ActionReader::displayError(const std::string& error)
+{
+  std::cout << "[ERROR] " << COLOR_RED << error << COLOR_OFF << std::endl;
+  nb_errors_++;
 }
