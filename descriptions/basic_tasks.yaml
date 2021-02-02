@@ -1,0 +1,28 @@
+task:  # Maybe not needed?
+  agents: "Agent[]"
+
+store:
+  type: task
+  description: "Taking an object from one place and storing it in a container"
+  parameters:
+    object: Object
+    storage: Container
+
+store_pickable:
+  type: store
+  description: "Taking a pickable object from one place and storing it in a container"  # Maybe not different from the above
+  parameters:
+    object: Pickable  # Override test
+
+communicate:
+  type: task
+  description: "Task aiming only at sharing information with other agents"
+  agents: "Agent"  # Only one agent 
+  parameters:
+    receivers: "Agent[]"  # what if broadcasting?
+
+point_at:
+  type: communicate
+  description: "Sharing the place of something through deictic gesture (maybe decomposed in multiple actions, placing, pointing, asking, ...)"  # Is it really a task and not an action?
+  parameters:
+    pointed: Object  # What if there are multiple objects?
