@@ -14,13 +14,132 @@
    <string>semantic actions description</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QVBoxLayout" name="verticalLayout_main">
+     <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_header">
+         <item>
+           <layout class="QVBoxLayout" name="verticalLayout_switchs">
+             <property name="sizeConstraint">
+               <enum>QLayout::SetFixedSize</enum>
+             </property>
+             <item>
+               <widget class="Switch" name="actions_switch">
+                 <property name="checked">
+                   <bool>true</bool>
+                 </property>
+                 <property name="text">
+                   <string>Actions</string>
+                 </property>
+               </widget>
+             </item>
+             <item>
+               <widget class="Switch" name="tasks_switch">
+                 <property name="checked">
+                   <bool>false</bool>
+                 </property>
+                 <property name="text">
+                   <string>Tasks</string>
+                 </property>
+               </widget>
+             </item>
+           </layout>
+         </item>
+         <item>
+           <layout class="QVBoxLayout" name="verticalLayout_reload">
+             <property name="sizeConstraint">
+               <enum>QLayout::SetFixedSize</enum>
+             </property>
+             <property name="rightMargin">
+              <number>20</number>
+             </property>
+             <item alignment="Qt::AlignRight">
+               <widget class="QPushButton" name="pushbutton_reload">
+                   <property name="minimumSize">
+                     <size>
+                      <width>50</width>
+                      <height>50</height>
+                    </size>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <activeon>:/darkstyle/icon_refresh.png</activeon>
+                   </iconset>
+                  </property>
+                  <property name="iconSize">
+                    <size>
+                     <width>30</width>
+                     <height>30</height>
+                   </size>
+                 </property>
+               </widget>
+             </item>
+           </layout>
+         </item>
+       </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_body">
+        <item>
+          <widget class="QTabWidget" name="tabWidget_lists">
+           <property name="currentIndex">
+            <number>1</number>
+           </property>
+           <widget class="QWidget" name="tab_list">
+            <attribute name="title">
+             <string>List</string>
+            </attribute>
+            <layout class="QHBoxLayout" name="horizontalLayout_list">
+              <item>
+                <widget class="QListWidget" name="listWidget_list">
+                </widget>
+              </item>
+            </layout>
 
+           </widget>
+           <widget class="QWidget" name="tab_tree">
+            <attribute name="title">
+             <string>Tree</string>
+            </attribute>
+            <layout class="QHBoxLayout" name="horizontalLayout_tree">
+              <item>
+                <widget class="QTreeWidget" name="treeWidget_tree">
+                 <property name="rootIsDecorated">
+                  <bool>true</bool>
+                 </property>
+                 <property name="sortingEnabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="headerHidden">
+                  <bool>true</bool>
+                 </property>
+                 <column>
+                  <property name="text">
+                   <string>1</string>
+                  </property>
+                 </column>
+                </widget>
+              </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+      </layout>
+     </item>
    </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
+   <customwidget>
+   <class>SelectionControl</class>
+   <extends>QAbstractButton</extends>
+   <header>include/gui/switch.h</header>
+  </customwidget>
+   <customwidget>
+   <class>Switch</class>
+   <extends>SelectionControl</extends>
+   <header>include/gui/switch.h</header>
+  </customwidget>
  </customwidgets>
  <resources/>
  <connections/>

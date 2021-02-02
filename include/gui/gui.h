@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTextCursor>
+#include <QButtonGroup>
 
 #include <ros/ros.h>
 #include <vector>
@@ -27,6 +28,8 @@ public:
 private:
   Ui::GUI *ui;
   ros::NodeHandle* n_;
+
+  QButtonGroup switch_group_;
 
 public slots:
 

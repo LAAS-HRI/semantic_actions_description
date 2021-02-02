@@ -65,9 +65,12 @@ set( QT_SOURCES
     src/gui/main.cpp
     src/gui/gui.cpp
     src/gui/DarkStyle.cpp
+    src/gui/switch.cpp
 
     include/gui/gui.h
     include/gui/DarkStyle.h
+    include/gui/SwitchStyle.h
+    include/gui/switch.h
 )
 ##############################################################################
 # Binaries

@@ -10,6 +10,9 @@ GUI::GUI(QWidget *parent) :
     ui(new Ui::GUI)
 {
     ui->setupUi(this);
+
+    switch_group_.addButton(ui->actions_switch);
+    switch_group_.addButton(ui->tasks_switch);
 }
 
 GUI::~GUI()
