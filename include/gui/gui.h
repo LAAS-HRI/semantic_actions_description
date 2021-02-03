@@ -5,6 +5,7 @@
 #include <QTextCursor>
 #include <QButtonGroup>
 #include <QTreeWidgetItem>
+#include <QListWidgetItem>
 
 #include <ros/ros.h>
 #include <vector>
@@ -36,6 +37,7 @@ private:
 
   std::map<std::string, action_t*> items_;
   std::vector<action_t*> items_roots_;
+  action_t* current_item_;
 
   void load();
   void addItemsToList();
@@ -46,10 +48,20 @@ private:
   void filterTree(const QString& search_text);
   bool hiddenChildren(QTreeWidgetItem* parent_item, const QString& search_text);
 
+  void setDescription();
+  void setInChildrenList(action_t* item);
+  QTreeWidgetItem* setPrentInTree(action_t* item);
+
+  std::pair<std::string, std::string> getAgent();
+  std::map<std::string, std::pair<std::string, std::string>> getParameters();
+
 public slots:
 
   void SearchChangedSlot(const QString&);
   void listTabChangedSlot(int index);
+
+  void treeItemClickedSlot(QTreeWidgetItem* item, int column);
+  void listItemClickedSlot(QListWidgetItem* item);
 
 signals:
 

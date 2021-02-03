@@ -27,3 +27,14 @@ strafe_next_to:
 
 pick:
   type: motion
+  description: "Picking an object."
+  parameters:
+    object: Object
+
+pick_right:
+  type: pick
+  description: "Picking an object with the right arm."
+
+pick_left:
+  type: pick
+  description: "Picking an object with the left arm."

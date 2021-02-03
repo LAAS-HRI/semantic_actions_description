@@ -79,6 +79,80 @@
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_body">
+
+        <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_item_description">
+            <item>
+
+              <widget class="QTextEdit" name="textedit_decription">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>225</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="html">
+                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                        &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+                        p, li { white-space: pre-wrap; }
+                        &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+                        &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+
+            </item>
+            <item>
+              <layout class="QVBoxLayout" name="verticalLayout_parents_and_children">
+                <item>
+                  <widget class="QLabel" name="label_parents">
+                   <property name="text">
+                    <string>Hierarchy</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                </item>
+                <item>
+                  <widget class="QTreeWidget" name="treeWidget_parents">
+                   <property name="rootIsDecorated">
+                    <bool>true</bool>
+                   </property>
+                   <property name="headerHidden">
+                    <bool>true</bool>
+                   </property>
+                   <property name="itemsExpandable">
+                    <bool>false</bool>
+                   </property>
+                   <column>
+                    <property name="text">
+                     <string>1</string>
+                    </property>
+                   </column>
+                  </widget>
+                </item>
+                <item>
+                  <widget class="QLabel" name="label_parents">
+                   <property name="text">
+                    <string>Inheriting of :</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                </item>
+                <item>
+                  <widget class="QListWidget" name="listWidget_children">
+                  </widget>
+                </item>
+              </layout>
+            </item>
+          </layout>
+        </item>
+
         <item>
           <layout class="QVBoxLayout" name="verticalLayout_list_and_search">
             <item>
@@ -90,21 +164,27 @@
              </item>
             <item>
               <widget class="QTabWidget" name="tabWidget_lists">
-             <property name="currentIndex">
-              <number>1</number>
-             </property>
-             <widget class="QWidget" name="tab_list">
-              <attribute name="title">
-               <string>List</string>
-              </attribute>
-              <layout class="QHBoxLayout" name="horizontalLayout_list">
-                <item>
-                  <widget class="QListWidget" name="listWidget_list">
-                  </widget>
-                </item>
-              </layout>
+               <property name="currentIndex">
+                <number>1</number>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>275</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <widget class="QWidget" name="tab_list">
+                <attribute name="title">
+                 <string>List</string>
+                </attribute>
+                <layout class="QHBoxLayout" name="horizontalLayout_list">
+                  <item>
+                    <widget class="QListWidget" name="listWidget_list">
+                    </widget>
+                  </item>
+                </layout>
 
-             </widget>
+               </widget>
              <widget class="QWidget" name="tab_tree">
               <attribute name="title">
                <string>Tree</string>
@@ -113,6 +193,9 @@
                 <item>
                   <widget class="QTreeWidget" name="treeWidget_tree">
                    <property name="rootIsDecorated">
+                    <bool>true</bool>
+                   </property>
+                   <property name="animated">
                     <bool>true</bool>
                    </property>
                    <property name="sortingEnabled">
@@ -134,6 +217,7 @@
            </item>
          </layout>
        </item>
+
       </layout>
      </item>
    </layout>

@@ -55,7 +55,7 @@ public:
 
     ~ActionReader()
     {
-        clear();
+        //clear();
     }
 
     bool load(bool log = false);
