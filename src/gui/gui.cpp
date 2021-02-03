@@ -22,6 +22,10 @@ GUI::GUI(QWidget *parent) :
     QObject::connect(ui->listWidget_list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(listItemClickedSlot(QListWidgetItem*)));
     QObject::connect(ui->treeWidget_parents, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(treeItemClickedSlot(QTreeWidgetItem*, int)));
     QObject::connect(ui->listWidget_children, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(listItemClickedSlot(QListWidgetItem*)));
+
+    QObject::connect(ui->actions_switch, SIGNAL(released()), this, SLOT(loadSlot()));
+    QObject::connect(ui->tasks_switch, SIGNAL(released()), this, SLOT(loadSlot()));
+    QObject::connect(ui->pushbutton_reload, SIGNAL(pressed()), this, SLOT(loadSlot()));
 }
 
 GUI::~GUI()
@@ -38,7 +42,21 @@ void GUI::init(ros::NodeHandle* n)
 
 void GUI::load()
 {
-  ActionReader reader(n_, "/actions_description");
+  std::string param_name;
+  bool is_task = false;
+
+  if(ui->actions_switch->checkState() == Qt::Checked)
+  {
+    param_name = "/actions_description";
+    is_task = false;
+  }
+  else
+  {
+    param_name = "/tasks_description";
+    is_task = true;
+  }
+  ActionReader reader(n_, param_name, is_task);
+  current_item_ = nullptr;
 
   if(reader.load())
   {
@@ -46,6 +64,13 @@ void GUI::load()
     {
       items_ = reader.getActions();
       items_roots_ = reader.getRootActions();
+
+      ui->listWidget_children->clear();
+      ui->listWidget_list->clear();
+      ui->treeWidget_parents->clear();
+      ui->treeWidget_tree->clear();
+      ui->textedit_decription->setHtml("");
+      ui->search_lineEdit->setText("");
 
       addItemsToList();
       addItemsToTree();
@@ -207,12 +232,15 @@ void GUI::setDescription()
   text += "<p>" + current_item_->description + "</p>";
 
   std::pair<std::string, std::string> inherited_agent = getAgent();
-  text += "<h3>Agent:</h3>";
+  if(ui->actions_switch->checkState() == Qt::Checked)
+    text += "<h3>Agent:</h3>";
+  else
+    text += "<h3>Agents:</h3>";
   if(current_item_->agent_type != "")
   {
     text += "<dl><dd>" + current_item_->agent_type;
     if(inherited_agent.first != "")
-      text += "(overloaded)";
+      text += " (overloaded)";
     text += "</dd></dl>";
   }
   else if(inherited_agent.first != "")

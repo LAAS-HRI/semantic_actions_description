@@ -57,6 +57,11 @@ private:
 
 public slots:
 
+  void loadSlot()
+  {
+    load();
+  }
+
   void SearchChangedSlot(const QString&);
   void listTabChangedSlot(int index);
 
