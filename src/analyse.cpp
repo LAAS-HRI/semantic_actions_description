@@ -6,12 +6,18 @@ int main(int argc, char** argv)
 
     ros::NodeHandle n;
 
-    std::string param = "/actions_description";
+    std::string actions_param = "/actions_description";
 
-    ActionReader reader(&n, param);
+    ActionReader actions_reader(&n, actions_param, false);
 
-    if(reader.load(true) == false)
-        std::cout << "The ros parameter " << param << " does not exist" << std::endl;
+    if(actions_reader.load(true) == false)
+        std::cout << "The ros parameter " << actions_param << " does not exist" << std::endl;
+
+    std::string tasks_param = "/tasks_description";
+    ActionReader tasks_reader(&n, tasks_param, true);
+
+    if(tasks_reader.load(true) == false)
+        std::cout << "The ros parameter " << tasks_param << " does not exist" << std::endl;
 
     return 0;
 }

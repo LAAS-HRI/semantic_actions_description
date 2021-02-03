@@ -47,10 +47,11 @@ struct action_t
 class ActionReader
 {
 public:
-    ActionReader(ros::NodeHandle* nh, const std::string& ros_param)
+    ActionReader(ros::NodeHandle* nh, const std::string& ros_param, bool is_tasks = false)
     {
         nh_ = nh;
         ros_param_ = ros_param;
+        is_tasks_ = is_tasks;
     }
 
     ~ActionReader()
@@ -76,6 +77,7 @@ public:
 private:
     ros::NodeHandle* nh_;
     std::string ros_param_;
+    bool is_tasks_;
     std::map<std::string, action_t*> actions_;
     std::vector<action_t*> actions_roots_;
     size_t nb_errors_;

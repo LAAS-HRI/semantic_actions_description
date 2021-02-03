@@ -1,3 +1,4 @@
 <launch>
     <param name="actions_description" type="str" command="cat '$(find semantic_actions_description)/descriptions/basic_actions.yaml'" />
+    <param name="tasks_description" type="str" command="cat '$(find semantic_actions_description)/descriptions/basic_tasks.yaml'" />
 </launch>

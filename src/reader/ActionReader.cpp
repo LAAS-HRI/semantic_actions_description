@@ -40,7 +40,12 @@ bool ActionReader::load(bool log)
             action->defined = true;
 
             if(log)
+            {
+              if(!is_tasks_)
                 std::cout << "[" << std::setw(3) << std::setprecision(0) << std::fixed << analyse_progress << "%] Analyse action " << action->name << std::endl;
+              else
+                std::cout << "[" << std::setw(3) << std::setprecision(0) << std::fixed << analyse_progress << "%] Analyse task " << action->name << std::endl;
+            }
 
             auto action_description = it->second;
             if(action_description.Type() != YAML::NodeType::Map)
@@ -64,7 +69,22 @@ bool ActionReader::load(bool log)
                     }
                     else if(descr_it->first.as<std::string>() == "agent")
                     {
-                        if(descr_it->first.Type() == YAML::NodeType::Scalar)
+                        if(is_tasks_)
+                        {
+                          errors.emplace_back("Parameter " + descr_it->first.as<std::string>() + " is not allowed for tasks description. Use agents.");
+                        }
+                        else if(descr_it->first.Type() == YAML::NodeType::Scalar)
+                            action->agent_type = descr_it->second.as<std::string>();
+                        else
+                            errors.emplace_back(action->name + " : " + descr_it->first.as<std::string>() + " is not in form of scalar");
+                    }
+                    else if(descr_it->first.as<std::string>() == "agents")
+                    {
+                        if(!is_tasks_)
+                        {
+                          errors.emplace_back("Parameter " + descr_it->first.as<std::string>() + " is not allowed for actions description. Use agent");
+                        }
+                        else if(descr_it->first.Type() == YAML::NodeType::Scalar)
                             action->agent_type = descr_it->second.as<std::string>();
                         else
                             errors.emplace_back(action->name + " : " + descr_it->first.as<std::string>() + " is not in form of scalar");
@@ -130,7 +150,10 @@ bool ActionReader::load(bool log)
                 if(action.second->defined == false)
                   displayError(action.first + " is use but not defined");
             }
-            std::cout << COLOR_GREEN << "[100%] Actions analysed" << COLOR_OFF << std::endl;
+            if(!is_tasks_)
+              std::cout << COLOR_GREEN << "[100%] Actions analysed" << COLOR_OFF << std::endl;
+            else
+              std::cout << COLOR_GREEN << "[100%] Tasks analysed" << COLOR_OFF << std::endl;
         }
 
         return true;
