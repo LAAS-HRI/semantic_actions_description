@@ -42,7 +42,14 @@ private:
   void addItemsToTree();
   void addItemsToTree(action_t* item, QTreeWidgetItem* parent);
 
+  void filterList(const QString& search_text);
+  void filterTree(const QString& search_text);
+  bool hiddenChildren(QTreeWidgetItem* parent_item, const QString& search_text);
+
 public slots:
+
+  void SearchChangedSlot(const QString&);
+  void listTabChangedSlot(int index);
 
 signals:
 

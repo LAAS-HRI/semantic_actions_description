@@ -80,49 +80,60 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_body">
         <item>
-          <widget class="QTabWidget" name="tabWidget_lists">
-           <property name="currentIndex">
-            <number>1</number>
-           </property>
-           <widget class="QWidget" name="tab_list">
-            <attribute name="title">
-             <string>List</string>
-            </attribute>
-            <layout class="QHBoxLayout" name="horizontalLayout_list">
-              <item>
-                <widget class="QListWidget" name="listWidget_list">
-                </widget>
-              </item>
-            </layout>
+          <layout class="QVBoxLayout" name="verticalLayout_list_and_search">
+            <item>
+              <widget class="QLineEdit" name="search_lineEdit">
+               <property name="placeholderText">
+                <string>Seach...</string>
+               </property>
+              </widget>
+             </item>
+            <item>
+              <widget class="QTabWidget" name="tabWidget_lists">
+             <property name="currentIndex">
+              <number>1</number>
+             </property>
+             <widget class="QWidget" name="tab_list">
+              <attribute name="title">
+               <string>List</string>
+              </attribute>
+              <layout class="QHBoxLayout" name="horizontalLayout_list">
+                <item>
+                  <widget class="QListWidget" name="listWidget_list">
+                  </widget>
+                </item>
+              </layout>
 
-           </widget>
-           <widget class="QWidget" name="tab_tree">
-            <attribute name="title">
-             <string>Tree</string>
-            </attribute>
-            <layout class="QHBoxLayout" name="horizontalLayout_tree">
-              <item>
-                <widget class="QTreeWidget" name="treeWidget_tree">
-                 <property name="rootIsDecorated">
-                  <bool>true</bool>
-                 </property>
-                 <property name="sortingEnabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="headerHidden">
-                  <bool>true</bool>
-                 </property>
-                 <column>
-                  <property name="text">
-                   <string>1</string>
-                  </property>
-                 </column>
-                </widget>
-              </item>
-            </layout>
-           </widget>
-          </widget>
-         </item>
+             </widget>
+             <widget class="QWidget" name="tab_tree">
+              <attribute name="title">
+               <string>Tree</string>
+              </attribute>
+              <layout class="QHBoxLayout" name="horizontalLayout_tree">
+                <item>
+                  <widget class="QTreeWidget" name="treeWidget_tree">
+                   <property name="rootIsDecorated">
+                    <bool>true</bool>
+                   </property>
+                   <property name="sortingEnabled">
+                    <bool>true</bool>
+                   </property>
+                   <property name="headerHidden">
+                    <bool>true</bool>
+                   </property>
+                   <column>
+                    <property name="text">
+                     <string>1</string>
+                    </property>
+                   </column>
+                  </widget>
+                </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+         </layout>
+       </item>
       </layout>
      </item>
    </layout>
